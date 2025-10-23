@@ -1,0 +1,43 @@
+# Environment variables and secrets
+.env
+.env.*
+*.key
+*_key
+*_secret
+credentials.json
+
+# API keys
+**/OPENROUTER_API_KEY
+**/OR_API_KEY
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+*.egg-info/
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/

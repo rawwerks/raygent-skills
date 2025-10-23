@@ -1,0 +1,21 @@
+{
+  "name": "raygent-skills",
+  "owner": {
+    "name": "Raymond Weitekamp"
+  },
+  "metadata": {
+    "description": "Ray's Skills for AI Agents, starting with Claude Skills.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "raygent-skills",
+      "description": "Ray's Skills for AI Agents, starting with Claude Skills.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./openrouter"
+      ]
+    }
+  ]
+}
