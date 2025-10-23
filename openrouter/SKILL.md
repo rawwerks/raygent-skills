@@ -155,6 +155,106 @@ Run the script multiple times with different models and compare:
 For speed: Try models with `:nitro` suffix
 For cost: Filter models.json by lowest pricing values
 
+## Accessing Provider Information (Non-API)
+
+### Opening Provider Pages with Query Parameters
+
+While the OpenRouter API provides model information, **provider-specific details** like throughput, latency, and availability are only accessible via the web interface. You can programmatically open these pages with sorting parameters.
+
+#### URL Structure
+
+```
+https://openrouter.ai/<model-slug>/providers?sort=<sorting-option>
+```
+
+**Available Sorting Options:**
+- `throughput` - Sort by provider throughput (tokens/sec)
+- `price` - Sort by cost
+- `latency` - Sort by response latency
+
+#### Example: Opening Provider Page Sorted by Throughput
+
+For the model `moonshotai/kimi-k2-0905`:
+
+```
+https://openrouter.ai/moonshotai/kimi-k2-0905/providers?sort=throughput
+```
+
+#### Use Case: Finding the Fastest Provider
+
+When you need to identify which provider offers the best throughput for a specific model:
+
+1. Extract the model slug from the model ID (e.g., `openai/gpt-4o` → `openai/gpt-4o`)
+2. Construct the URL: `https://openrouter.ai/<model-slug>/providers?sort=throughput`
+3. Open the URL in a browser or use web automation tools
+4. The page will display providers sorted by throughput (highest first)
+
+**Note**: This information is **not available through the API** and requires web interface access. The `:nitro` modifier automatically routes to the fastest provider, but if you need to see provider-specific metrics, use the web interface with query parameters.
+
+#### Workflow for Agent Tools
+
+If you have browser automation capabilities:
+- Use `mcp__chrome-devtools__new_page` or similar to open the provider page
+- The `?sort=throughput` parameter ensures the page loads pre-sorted
+- Extract provider metrics from the rendered page
+
+### Accessing Model Rankings by Category
+
+OpenRouter provides model rankings filtered by specific use cases and categories. These rankings show which models perform best for different tasks based on user ratings and token usage.
+
+#### URL Structure
+
+```
+https://openrouter.ai/rankings?category=<category-value>#categories
+```
+
+#### Available Categories
+
+| Category Display Name | Query Parameter Value | Example URL |
+|----------------------|----------------------|-------------|
+| Programming | `programming` | `https://openrouter.ai/rankings?category=programming#categories` |
+| Roleplay | `roleplay` | `https://openrouter.ai/rankings?category=roleplay#categories` |
+| Marketing | `marketing` | `https://openrouter.ai/rankings?category=marketing#categories` |
+| Marketing/Seo | `marketing/seo` | `https://openrouter.ai/rankings?category=marketing/seo#categories` |
+| Technology | `technology` | `https://openrouter.ai/rankings?category=technology#categories` |
+| Science | `science` | `https://openrouter.ai/rankings?category=science#categories` |
+| Translation | `translation` | `https://openrouter.ai/rankings?category=translation#categories` |
+| Legal | `legal` | `https://openrouter.ai/rankings?category=legal#categories` |
+| Finance | `finance` | `https://openrouter.ai/rankings?category=finance#categories` |
+| Health | `health` | `https://openrouter.ai/rankings?category=health#categories` |
+| Trivia | `trivia` | `https://openrouter.ai/rankings?category=trivia#categories` |
+| Academia | `academia` | `https://openrouter.ai/rankings?category=academia#categories` |
+
+#### Usage Notes
+
+- Most categories use lowercase versions of their names (e.g., `programming`, `science`)
+- The **Marketing/Seo** category uses `marketing/seo` with a slash
+- The `#categories` anchor is optional but helps navigate to the categories section
+- Rankings are **not available through the API** and require web interface access
+- Each category shows models ranked by performance for that specific use case
+
+#### Use Case: Finding the Best Model for a Specific Task
+
+When you need to identify top-performing models for a particular domain:
+
+1. Select the appropriate category from the table above
+2. Construct the URL: `https://openrouter.ai/rankings?category=<value>#categories`
+3. Open the URL in a browser or use web automation tools
+4. The page displays models ranked by performance for that category
+
+Example for programming tasks:
+```
+https://openrouter.ai/rankings?category=programming#categories
+```
+
+#### Workflow for Agent Tools
+
+If you have browser automation capabilities:
+- Use `mcp__chrome-devtools__new_page` to open the rankings page
+- The `?category=<value>` parameter loads the page with the selected category
+- Verify the category dropdown shows the expected category name
+- Extract model rankings and performance data from the rendered page
+
 ## Resources
 
 ### scripts/call_openrouter.sh
