@@ -20,12 +20,22 @@ Use OpenRouter's unified API to call different LLM models with cost and performa
 
 ### Via Claude Code Plugin System
 
-1. Add this repository as a plugin marketplace (feature coming soon)
-2. Install the `raygent-skills` plugin
+You can register this repository as a Claude Code Plugin marketplace by running the following command in Claude Code:
+
+```
+/plugin marketplace add rawwerks/raygent-skills
+```
+
+Then, to install the skills:
+
+1. Select **Browse and install plugins**
+2. Select **raygent-skills**
+3. Select **raygent-skills** (the plugin containing OpenRouter)
+4. Select **Install now**
 
 ### Manual Installation
 
-1. Download `openrouter.zip`
+1. Download `openrouter.zip` from the [releases](https://github.com/rawwerks/raygent-skills/releases) or directly from the repository
 2. Unzip to your Claude skills directory:
    ```bash
    unzip openrouter.zip -d ~/.claude/skills/
