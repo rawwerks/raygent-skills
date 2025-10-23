@@ -39,6 +39,16 @@ Use OpenRouter's unified API to call different LLM models with cost and performa
 - [skill-creator](https://github.com/anthropics/skills) plugin installed
 - `jq` (for bash scripts)
 
+### First-Time Setup
+
+After cloning this repository, run the setup script to install git hooks:
+
+```bash
+bash scripts/setup_hooks.sh
+```
+
+This installs a pre-commit hook that automatically packages skills when committing.
+
 ### Auto-Packaging
 
 This repository uses a pre-commit hook to automatically package skills when committing. This ensures `.zip` files are always up-to-date with source changes.
