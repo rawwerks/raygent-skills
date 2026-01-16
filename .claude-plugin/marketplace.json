@@ -9,22 +9,17 @@
   },
   "plugins": [
     {
-      "name": "raygent-skills",
-      "description": "Ray's Skills for AI Agents, starting with Claude Skills.",
-      "source": "./",
-      "strict": false,
-      "skills": [
-        "./openrouter"
-      ]
+      "name": "openrouter",
+      "description": "Use OpenRouter's unified API to call different LLM models with cost and performance tracking.",
+      "repo": "https://github.com/rawwerks/raygent-skills",
+      "path": "./openrouter",
+      "version": "1.0.0"
     },
     {
       "name": "ralph-eats-beads",
       "description": "Autonomous AI coding loop using bd (beads) for task management with parallel tmux subagents. Ships features while you sleep.",
-      "source": "./",
-      "strict": false,
-      "skills": [
-        "./ralph-eats-beads"
-      ]
+      "repo": "https://github.com/rawwerks/ralph-eats-beads",
+      "version": "1.0.0"
     }
   ]
 }

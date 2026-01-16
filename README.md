@@ -1,116 +1,56 @@
-# Raygent Skills
+# Raygent Skills Marketplace
 
-Ray's Skills for AI Agents, starting with Claude Skills.
+A plugin marketplace (index) for Claude Code, pointing to Ray's AI agent skills.
 
-## Skills
+## Available Plugins
 
-### OpenRouter
-
-Use OpenRouter's unified API to call different LLM models with cost and performance tracking.
-
-**Features**:
-- Call any model available on OpenRouter (Claude, GPT, Gemini, Llama, etc.)
-- Track response time and cost per request
-- Compare models for quality, speed, and cost
-- Use modifiers like `:nitro` (fastest) and `:online` (web search)
-
-### Ralph Eats Beads 🦀
-
-Autonomous AI coding loop using bd (beads) for task management with parallel tmux subagents. Ships features while you sleep.
-
-**Features**:
-- Parallel subagents pick work from `bd ready`
-- tmux-based observability
-- Watchdog for health monitoring
-- AI-powered planning from requirements
+| Plugin | Description | Repo |
+|--------|-------------|------|
+| **openrouter** | OpenRouter unified API for LLM models | [this repo](./openrouter) |
+| **ralph-eats-beads** | Autonomous AI coding loop with bd | [rawwerks/ralph-eats-beads](https://github.com/rawwerks/ralph-eats-beads) |
 
 ## Installation
 
-### Via Claude Code Plugin System
-
-Register this repository as a Claude Code Plugin marketplace:
+### Add the marketplace
 
 ```
 /plugin marketplace add rawwerks/raygent-skills
 ```
 
-Then install plugins:
+### Install plugins
 
 ```
-/plugin install raygent-skills@raygent-skills
+/plugin install openrouter@raygent-skills
 /plugin install ralph-eats-beads@raygent-skills
 ```
 
-Or browse and install:
-1. Select **Browse and install plugins**
-2. Select **raygent-skills**
-3. Select the plugin you want (**raygent-skills** or **ralph-eats-beads**)
-4. Select **Install now**
+## Architecture
 
-### Manual Installation
+This repo is a **marketplace index** — it catalogs plugins but doesn't necessarily contain them all:
 
-Download `.zip` files from the repository and unzip to your Claude skills directory:
-```bash
-unzip openrouter.zip -d ~/.claude/skills/
+```
+raygent-skills (marketplace)
+├── .claude-plugin/marketplace.json  ← index pointing to plugins
+├── openrouter/                      ← plugin hosted here
+└── README.md
+
+ralph-eats-beads (separate repo)     ← plugin hosted externally
+├── SKILL.md
+└── scripts/
 ```
 
-## Development
+## Adding Plugins
 
-### Requirements
+To add a plugin to this marketplace, update `.claude-plugin/marketplace.json`:
 
-- Python 3
-- [skill-creator](https://github.com/anthropics/skills) plugin installed
-- `jq` (for bash scripts)
-
-### First-Time Setup
-
-After cloning this repository, run the setup script to install git hooks:
-
-```bash
-bash scripts/setup_hooks.sh
+```json
+{
+  "name": "my-plugin",
+  "description": "What it does",
+  "repo": "https://github.com/owner/repo",
+  "version": "1.0.0"
+}
 ```
-
-This installs a pre-commit hook that automatically packages skills when committing.
-
-### Auto-Packaging
-
-This repository uses a pre-commit hook to automatically package skills when committing. This ensures `.zip` files are always up-to-date with source changes.
-
-**How it works**:
-1. When you run `git commit`, the hook automatically runs
-2. All skills (directories with `SKILL.md`) are packaged
-3. Updated `.zip` files are staged and included in the commit
-4. If packaging fails, the commit is aborted
-
-**Manual packaging**:
-```bash
-# Package all skills
-bash scripts/package_all_skills.sh
-
-# Package a specific skill
-python3 ~/.claude/plugins/marketplaces/anthropic-agent-skills/skill-creator/scripts/package_skill.py ./openrouter .
-```
-
-### Adding New Skills
-
-1. Create a new skill directory with `SKILL.md`
-2. Update `.claude-plugin/marketplace.json` to include the new skill
-3. Commit your changes - the skill will be auto-packaged
-
-### Security
-
-**Important**: Never commit API keys or secrets!
-
-- `.env` files are gitignored
-- API keys should be set as environment variables
-- Check `.gitignore` before committing sensitive files
-
-## Contributing
-
-Contributions welcome! Please ensure:
-1. Skills follow the [Anthropic skill guidelines](https://github.com/anthropics/skills)
-2. Skills pass validation (`package_skill.py` validates automatically)
-3. Documentation is clear and includes examples
 
 ## License
 
