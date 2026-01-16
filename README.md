@@ -14,32 +14,45 @@ Use OpenRouter's unified API to call different LLM models with cost and performa
 - Compare models for quality, speed, and cost
 - Use modifiers like `:nitro` (fastest) and `:online` (web search)
 
-**Installation**: See [Installation](#installation) below.
+### Ralph Eats Beads 🦀
+
+Autonomous AI coding loop using bd (beads) for task management with parallel tmux subagents. Ships features while you sleep.
+
+**Features**:
+- Parallel subagents pick work from `bd ready`
+- tmux-based observability
+- Watchdog for health monitoring
+- AI-powered planning from requirements
 
 ## Installation
 
 ### Via Claude Code Plugin System
 
-You can register this repository as a Claude Code Plugin marketplace by running the following command in Claude Code:
+Register this repository as a Claude Code Plugin marketplace:
 
 ```
 /plugin marketplace add rawwerks/raygent-skills
 ```
 
-Then, to install the skills:
+Then install plugins:
 
+```
+/plugin install raygent-skills@raygent-skills
+/plugin install ralph-eats-beads@raygent-skills
+```
+
+Or browse and install:
 1. Select **Browse and install plugins**
 2. Select **raygent-skills**
-3. Select **raygent-skills** (the plugin containing OpenRouter)
+3. Select the plugin you want (**raygent-skills** or **ralph-eats-beads**)
 4. Select **Install now**
 
 ### Manual Installation
 
-1. Download `openrouter.zip` from the [releases](https://github.com/rawwerks/raygent-skills/releases) or directly from the repository
-2. Unzip to your Claude skills directory:
-   ```bash
-   unzip openrouter.zip -d ~/.claude/skills/
-   ```
+Download `.zip` files from the repository and unzip to your Claude skills directory:
+```bash
+unzip openrouter.zip -d ~/.claude/skills/
+```
 
 ## Development
 
@@ -105,4 +118,4 @@ MIT
 
 ## Author
 
-Raymond Weitekamp ([@raygent](https://github.com/raygent))
+Raymond Weitekamp ([@rawwerks](https://github.com/rawwerks))

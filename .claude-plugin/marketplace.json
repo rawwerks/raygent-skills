@@ -16,6 +16,15 @@
       "skills": [
         "./openrouter"
       ]
+    },
+    {
+      "name": "ralph-eats-beads",
+      "description": "Autonomous AI coding loop using bd (beads) for task management with parallel tmux subagents. Ships features while you sleep.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./ralph-eats-beads"
+      ]
     }
   ]
 }
